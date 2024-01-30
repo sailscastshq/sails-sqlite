@@ -1,0 +1,25 @@
+{
+  "name": "sails-sqlite",
+  "version": "0.0.0",
+  "description": "SQLite adapter for Sails/Waterline",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run custom-tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/sailscastshq/sails-sqlite"
+  },
+  "keywords": [
+    "sqlite",
+    "sqlite3",
+    "adapter",
+    "sails",
+    "sails.js",
+    "waterline",
+    "orm",
+    "database-adapter"
+  ],
+  "author": "Kelvin Omereshone <kelvin@sailscasts.com>",
+  "license": "MIT"
+}
