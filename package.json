@@ -2,13 +2,34 @@
   "name": "sails-sqlite",
   "version": "0.0.0",
   "description": "SQLite adapter for Sails/Waterline",
-  "main": "index.js",
+  "main": "lib/adapter",
+  "directories": {
+    "lib": "./lib"
+  },
   "scripts": {
-    "test": "npm run lint && npm run custom-tests"
+    "test": "npm run lint && npm run custom-tests",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/sailscastshq/sails-sqlite"
+    "url": "git://github.com/sailscastshq/sails-sqlite.git"
+  },
+  "bugs": "https://github.com/sailscastshq/sails-sqlite/issues",
+  "waterlineAdapter": {
+    "waterlineVersion": "~0.13.0",
+    "interfaces": [
+      "semantic",
+      "queryable",
+      "migratable",
+      "associations",
+      "sql"
+    ],
+    "features": [
+      "crossAdapter",
+      "unique",
+      "autoIncrement",
+      "schemas"
+    ]
   },
   "keywords": [
     "sqlite",
@@ -21,5 +42,17 @@
     "database-adapter"
   ],
   "author": "Kelvin Omereshone <kelvin@sailscasts.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "3.2.5"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.1.2",
+    "machine": "^15.2.3"
+  }
 }
