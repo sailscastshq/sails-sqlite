@@ -2,7 +2,7 @@
   "name": "sails-sqlite",
   "version": "0.0.0",
   "description": "SQLite adapter for Sails/Waterline",
-  "main": "lib/adapter",
+  "main": "lib",
   "directories": {
     "lib": "./lib"
   },
@@ -54,5 +54,17 @@
   "dependencies": {
     "better-sqlite3": "^11.1.2",
     "machine": "^15.2.3"
+  },
+  "machinepack": {
+    "friendlyName": "SQLite",
+    "extendedDescription": "Uses the Node.js better-sqlite3 driver located at https://npmjs.com/package/better-sqlite3",
+    "moreInfoUrl": "https://github.com/WiseLibs/better-sqlite3",
+    "implements": [
+      "connectable",
+      "modeled",
+      "migratable"
+    ],
+    "machineDir": "lib/private/machines/",
+    "exportStyle": "dryDictionary"
   }
 }
