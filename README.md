@@ -207,7 +207,7 @@ Based on SQLite performance best practices, this adapter provides:
 Run the included test suite:
 
 ```bash
-node test.js
+npm test
 ```
 
 This will test all major adapter functionality including:
@@ -223,13 +223,14 @@ This will test all major adapter functionality including:
 
 Contributions are welcome! Please ensure:
 
-1. All tests pass: `node test.js`
+1. All tests pass: `npm tests`
 2. Follow existing code style
 3. Add tests for new features
 4. Update documentation
 
 ## 📚 Resources
 
+- [Sails SQLite Documentation](https://docs.sailscasts.com/sails-sqlite)
 - [Sails.js Documentation](https://sailsjs.com/documentation)
 - [Waterline ORM](https://waterlinejs.org/)
 - [better-sqlite3](https://github.com/WiseLibs/better-sqlite3)
