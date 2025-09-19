@@ -7,7 +7,9 @@
     "lib": "./lib"
   },
   "scripts": {
-    "test": "node tests/",
+    "test": "npm run lint && npm run custom-tests && npm run adapter-tests",
+    "custom-tests": "node tests/",
+    "adapter-tests": "rm -rf .tmp && node tests/runner.js",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "prepare": "husky"
@@ -48,13 +50,16 @@
   "devDependencies": {
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "3.2.5"
+    "mocha": "^11.7.2",
+    "prettier": "3.2.5",
+    "waterline-adapter-tests": "^1.0.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "better-sqlite3": "^12.2.0",
+    "flaverr": "^1.10.0",
     "machine": "^15.2.3",
     "waterline-utils": "^1.4.5"
   },
