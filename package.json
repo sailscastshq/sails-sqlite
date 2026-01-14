@@ -1,6 +1,6 @@
 {
   "name": "sails-sqlite",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "SQLite adapter for Sails/Waterline",
   "main": "lib",
   "directories": {
