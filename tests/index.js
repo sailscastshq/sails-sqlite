@@ -6,7 +6,7 @@ const fs = require('node:fs')
 
 // __dirname is automatically available in CommonJS
 
-const testFiles = ['transaction.test.js']
+const testFiles = ['transaction.test.js', 'boolean-bindings.test.js']
 
 function cleanupTestDatabases() {
   try {
