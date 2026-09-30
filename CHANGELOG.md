@@ -1,10 +1,10 @@
 # Changelog
 
-## Version 0.3.0 — Null queries that do what you mean
+## Version 0.2.7 — Null queries that do what you mean
 
 Open tasks. Unassigned records. Work waiting for a completion timestamp. These are everyday queries—and they should work.
 
-This minor release fixes null criteria across sails-sqlite's shared WHERE compiler. A query for a missing value now finds the matching rows, and a query for a present value finds the rest.
+This patch release fixes null criteria across sails-sqlite's shared WHERE compiler. A query for a missing value now finds the matching rows, and a query for a present value finds the rest.
 
 ### The fix
 
@@ -31,7 +31,7 @@ The shared fix applies to `find`, `count`, `update`, `destroy`, `sum`, and `avg`
 ### Upgrade
 
 ```bash
-npm install sails-sqlite@0.3.0
+npm install sails-sqlite@0.2.7
 ```
 
 No schema migration or query syntax change is required. Null-filtered updates and deletes now affect the intended matching rows; review any application logic that relied on their previous no-op behavior.
@@ -51,7 +51,7 @@ Local release validation uses Node 24 and Waterline 0.15.2. The additional revie
 
 Thanks to [@Maxed0utt](https://github.com/Maxed0utt) for identifying the SQL null semantics problem, fixing the shared compiler, and adding regression coverage in [PR #23](https://github.com/sailscastshq/sails-sqlite/pull/23). This addresses [issue #22](https://github.com/sailscastshq/sails-sqlite/issues/22).
 
-[Full changelog: v0.2.6 → v0.3.0](https://github.com/sailscastshq/sails-sqlite/compare/v0.2.6...v0.3.0)
+[Full changelog: v0.2.6 → v0.2.7](https://github.com/sailscastshq/sails-sqlite/compare/v0.2.6...v0.2.7)
 
 ## Version 0.1.0 - Production Ready with Advanced Performance Optimizations
 
