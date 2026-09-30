@@ -1,5 +1,58 @@
 # Changelog
 
+## Version 0.3.0 — Null queries that do what you mean
+
+Open tasks. Unassigned records. Work waiting for a completion timestamp. These are everyday queries—and they should work.
+
+This minor release fixes null criteria across sails-sqlite's shared WHERE compiler. A query for a missing value now finds the matching rows, and a query for a present value finds the rest.
+
+### The fix
+
+Previously, null equality and inequality became `column = ?` and `column != ?` with a null binding. Neither comparison is true in SQL, so reads returned no matching rows, counts returned zero, and updates and deletes silently affected nothing.
+
+Null criteria now compile to `IS NULL` and `IS NOT NULL`:
+
+```javascript
+// Find unfinished tasks.
+await Task.find({ completedAt: null })
+
+// Find completed tasks.
+await Task.find({ completedAt: { '!=': null } })
+
+// Assign tasks that have no assignee.
+await Task.update({ assignee: null }).set({ assignee: 'ada' })
+
+// Count unfinished tasks.
+await Task.count({ completedAt: null })
+```
+
+The shared fix applies to `find`, `count`, `update`, `destroy`, `sum`, and `avg`, including combined and nested AND/OR criteria. Non-null comparisons keep their parameterized bindings, including `false`, `0`, and empty strings.
+
+### Upgrade
+
+```bash
+npm install sails-sqlite@0.3.0
+```
+
+No schema migration or query syntax change is required. Null-filtered updates and deletes now affect the intended matching rows; review any application logic that relied on their previous no-op behavior.
+
+CI now runs Node 24 instead of Node 18, aligning it with the existing better-sqlite3 dependency's supported runtimes. This release does not change dependency versions.
+
+### Tested beyond the happy path
+
+- 26 checked-in custom tests pass: transactions, boolean bindings, and 10 new null-criteria regressions.
+- 172 Waterline adapter conformance tests pass; 1 existing test remains pending.
+- 31 additional release-review checks pass, covering exact SQL and binding order, nested criteria, mapped column names through Waterline, aggregates, and preservation of unrelated rows during updates and deletes.
+- The null regressions reproduce the bug on the previous implementation and pass with the fix.
+
+Local release validation uses Node 24 and Waterline 0.15.2. The additional review fixtures are separate from the package's checked-in suite.
+
+### Thank you, Maxed0utt
+
+Thanks to [@Maxed0utt](https://github.com/Maxed0utt) for identifying the SQL null semantics problem, fixing the shared compiler, and adding regression coverage in [PR #23](https://github.com/sailscastshq/sails-sqlite/pull/23). This addresses [issue #22](https://github.com/sailscastshq/sails-sqlite/issues/22).
+
+[Full changelog: v0.2.6 → v0.3.0](https://github.com/sailscastshq/sails-sqlite/compare/v0.2.6...v0.3.0)
+
 ## Version 0.1.0 - Production Ready with Advanced Performance Optimizations
 
 ### 🚀 Major Features Added
