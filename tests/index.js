@@ -7,6 +7,7 @@ const fs = require('node:fs')
 // __dirname is automatically available in CommonJS
 
 const testFiles = [
+  'busy-errors.test.js',
   'transaction.test.js',
   'boolean-bindings.test.js',
   'null-criteria.test.js'
